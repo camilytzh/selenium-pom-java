@@ -28,7 +28,8 @@ public class HomePage extends BasePage{
     private List<WebElement> monitors;
     @FindBy(xpath = "//*[@class=\"col-sm-12 col-md-6 col-lg-6\"]/a")
     private List<WebElement> addToCartBtn;
-    public HomePage(WebDriver driver) {
+    public HomePage(WebDriver driver, String url) {
         super(driver);
+        this.driver.get(url);
     }
 }

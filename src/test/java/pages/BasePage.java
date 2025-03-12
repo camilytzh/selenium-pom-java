@@ -4,21 +4,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.sql.Driver;
+import java.time.Duration;
 
 public class BasePage {
-    @FindBy(xpath = "//a[@data-target=\"#videoModal\"]")
+    @FindBy(css = "a[data-target=\"#videoModal\"]")
     private WebElement aboutUsNav;
     @FindBy(css = ".nav-item [href=\"index.html\"]")
     private WebElement homeNav;
     @FindBy(xpath = "//a[text() = 'Contact']")
     private WebElement contactNav;
-    @FindBy(id = "#signin2")
+    @FindBy(id = "signin2")
     private WebElement signUpNav;
-    @FindBy(id = "#cartur")
+    @FindBy(id = "cartur")
     private WebElement cartNav;
-    @FindBy(id = "#login2")
+    @FindBy(id = "login2")
     private WebElement loginNav;
     protected WebDriver driver;
     public BasePage(WebDriver driver){
