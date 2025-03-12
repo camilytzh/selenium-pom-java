@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class SignUpModal extends BasePage{
-    @FindBy(id = "#signin2")
-    private WebElement signUpNav;
     @FindBy(id = "#sign-username")
     private WebElement usernameInput;
     @FindBy(id = "#sign-password")

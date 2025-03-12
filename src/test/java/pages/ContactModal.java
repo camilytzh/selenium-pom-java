@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ContactModal extends BasePage{
-    @FindBy(xpath = "//a[text() = 'Contact']")
-    private WebElement contactNav;
     @FindBy(id = "#recipient-email")
     private WebElement emailInput;
     @FindBy(id = "#recipient-name")
