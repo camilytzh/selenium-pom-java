@@ -1,8 +1,15 @@
 package pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
+import utils.ConfigReader;
+
+import java.time.Duration;
 
 public class LoginModal extends BasePage{
     @FindBy(id = "loginusername")
@@ -17,6 +24,29 @@ public class LoginModal extends BasePage{
     private WebElement logoutBtn;
     @FindBy(id = "nameofuser")
     private WebElement loginCheck;
+    SoftAssert softAssert = new SoftAssert();
+    public void login(String username, String password){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(usernameInput));
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginBtn.click();
+    }
+    public void verifyUserIsLogged(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(loginCheck));
+        softAssert.assertTrue(loginCheck.isDisplayed());
+        softAssert.assertAll();
+    }
+    public void checkInvalidLoginMessage(){
+        String expectedAlert = "User does not exist.";
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        String alertText = alert.getText();
+        softAssert.assertEquals(alertText, expectedAlert);
+        softAssert.assertAll();
+        alert.accept();
+    }
 
     public LoginModal(WebDriver driver) {
         super(driver);

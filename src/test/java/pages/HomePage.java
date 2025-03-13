@@ -3,15 +3,31 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
+
+import java.time.Duration;
 import java.util.List;
 
 public class HomePage extends BasePage{
-    @FindBy(css = "img[alt=\"First slide\"]")
+    @FindBy(xpath = "//*[@id=\"contcar\"]/div/div/div[1]")
     private WebElement firstSlide;
-    @FindBy(css = "img[alt=\"Second slide\"]")
+    @FindBy(xpath = "//*[@id=\"contcar\"]/div/div/div[2]")
     private WebElement secondSlide;
-    @FindBy(css = "img[alt=\"Third slide\"]")
+    @FindBy(xpath = "//*[@id=\"contcar\"]/div/div/div[3]")
     private WebElement thirdSlide;
+    @FindBy(xpath = "//*[@id=\"contcar\"]/div/a[1]")
+    private WebElement prevBtn;
+    @FindBy(css = "li[data-slide-to=\"0\"]")
+    private WebElement firstIndicator;
+    @FindBy(css = "li[data-slide-to=\"1\"]")
+    private WebElement secondIndicator;
+    @FindBy(css = "li[data-slide-to=\"2\"]")
+    private WebElement thirdIndicator;
+    @FindBy(xpath = "//*[@id=\"contcar\"]/div/a[2]")
+    private WebElement nextBtn;
     @FindBy(css = "div[id=\"contcont\"]")
     private WebElement productsContent;
     @FindBy(css = "a[onclick=\"byCat('phone')\"]")
