@@ -17,13 +17,11 @@ public class AboutUsModal extends BasePage{
 
     SoftAssert softAssert = new SoftAssert();
     public void closeAboutUsModal(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOf(closeBtn));
+        waitForVisibility(closeBtn);
         this.closeBtn.click();
     }
     public void checkTitle(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOf(topTitle));
+        waitForVisibility(topTitle);
         String currentText = topTitle.getText();
         softAssert.assertEquals(currentText, "About us");
         softAssert.assertAll();

@@ -34,8 +34,7 @@ public class CartPage extends BasePage{
     private WebElement confirmationBtn;
     SoftAssert softAssert = new SoftAssert();
     public void checkPlaceOrderBtnIsVisible(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(placeOrderBtn));
+        waitForVisibility(placeOrderBtn);
         softAssert.assertTrue(placeOrderBtn.isDisplayed());
         softAssert.assertAll();
     }

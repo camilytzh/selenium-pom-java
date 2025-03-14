@@ -33,15 +33,13 @@ public class LoginModal extends BasePage{
         loginBtn.click();
     }
     public void verifyUserIsLogged(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(loginCheck));
+        waitForVisibility(loginCheck);
         softAssert.assertTrue(loginCheck.isDisplayed());
         softAssert.assertAll();
     }
     public void checkInvalidLoginMessage(){
         String expectedAlert = "User does not exist.";
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = waitForAlert();
         String alertText = alert.getText();
         softAssert.assertEquals(alertText, expectedAlert);
         softAssert.assertAll();

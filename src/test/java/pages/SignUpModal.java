@@ -22,8 +22,7 @@ public class SignUpModal extends BasePage{
     private WebElement signUpBtn;
     SoftAssert softAssert = new SoftAssert();
     public void checkElementsAreDisplayed(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(usernameInput));
+        waitForVisibility(usernameInput);
         softAssert.assertTrue(usernameInput.isDisplayed());
         softAssert.assertTrue(passwordInput.isDisplayed());
         softAssert.assertTrue(closeBtn.isDisplayed());
@@ -31,15 +30,13 @@ public class SignUpModal extends BasePage{
         softAssert.assertAll();
     }
     public void signUp(String username, String password){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(usernameInput));
+        waitForVisibility(usernameInput);
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
-        signUpBtn.click();
+        click(signUpBtn);
     }
     public void checkSignUpMessage(String message){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = waitForAlert();
         String alertText = alert.getText();
         softAssert.assertEquals(alertText, message);
         softAssert.assertAll();

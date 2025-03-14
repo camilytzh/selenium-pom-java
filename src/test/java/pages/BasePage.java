@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,30 +25,41 @@ public class BasePage {
     @FindBy(id = "login2")
     private WebElement loginNav;
     protected WebDriver driver;
+    protected WebDriverWait wait;
     public BasePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+    protected void click(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+    protected void waitForVisibility(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    protected Alert waitForAlert() {
+        return wait.until(ExpectedConditions.alertIsPresent());
     }
     public String getCurrentPageURL()
     {
         return this.driver.getCurrentUrl();
     }
     public void goHomePage(){
-        this.homeNav.click();
+        click(homeNav);
     }
     public void goContactModal(){
-        this.contactNav.click();
+        click(contactNav);
     }
     public void goSignUpModal(){
-        this.signUpNav.click();
+        click(signUpNav);
     }
     public void goCartPage(){
-        this.cartNav.click();
+        click(cartNav);
     }
     public void goLoginModal(){
-        this.loginNav.click();
+        click(loginNav);
     }
     public void goAboutUsModal(){
-        this.aboutUsNav.click();
+        click(aboutUsNav);
     }
 }
