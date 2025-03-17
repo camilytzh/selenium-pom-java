@@ -52,7 +52,4 @@ public class HomePage extends BasePage{
         super(driver);
         this.driver.get(url);
     }
-    public HomePage(WebDriver driver){
-        super(driver);
-    }
 }

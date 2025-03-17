@@ -6,11 +6,6 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class PurchaseFlowTest extends BaseTest{
-    private HomePage homePage;
-    @BeforeMethod
-    public void setup(){
-        homePage = new HomePage(driver);
-    }
     @Test
     public void verifyCategoryMenu(){
         homePage.verifyPhonesAreFiltered();
